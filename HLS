@@ -24,3 +24,55 @@ void ledonoff(unsigned char*o)
 
 *o=0b11110000
 }
+
+
+In vivado HLS we 
+1.Create a project 
+2.add a source file 
+3.perform high level synthesis
+4.generate IP
+
+TOP FUNCTION :IS THE NAME OF THE HARDWARE MODULE ENTRY FUNCTION .EACH HARDWARE MOPDULE HAVE ON TOP FUNCITON
+
+
+VIVADO HLS GUI HAS 4 PARTS 
+
+1st has EXPLORER it has includes which is the included header file 
+2. source 
+3.test bench 
+
+
+
+void basic_output(unsigned char*o){
+	*o=0b11110000;
+}
+
+#Now we should add pragma 
+1.adding manually to the source code 
+2. use directive 
+
+void FIRST(unsigned char *o){
+#pragma HLS INTERFACE ap_none port=o
+#pragma HLS INTERFACE ap_ctrl_none port=return
+	*o=0b11110000;
+}
+after it use synthesis and RTL .
+we will get the ip then open vivado go to create design and after right click import the ip then click on the plus sign and add the IP .L
+there are two pragma 
+1.top level function pragma which add the control signal to the synthesized hardware.
+2.Port related pragma  
+since currently our design is simple thus these two group of pragma doesnot define the right interface.
+
+
+DESIGN IN VIVADO 
+
+
+LVCMOS33 
+3.3 V LOW VOLTAGE CMOS SINGLE ENDED I/O STANDARD 
+TO CONNECT THE IP PORTS INTO THE FPGA PINS ,WE SHOULD DEFINE SOME CONSTRAINTS 
+THE MAIN CONSTRAINTS DETERMINE THE PIN LOCATION AND PIN ELECTRICAL STANDARD 
+
+
+
+SIMPLE INPUT 
+##BASIC INPUT OUTPUT 
