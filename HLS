@@ -6,3 +6,21 @@ HARDWARE:-INOUTS
 SOFTWARE:-CALL BY REFERENCE ARGUMENTS
 HARDWARTE:-DESIGN 
 SOFTWARE:-FUNCTION BODY 
+A SOFTWARE FUNCTION DESCRIBE HARDWARE MODULE 
+THE FUNCTION ARGUMENT MODEL THE HARDWARE PORTS 
+A FUNCTION BODY IMPLEMENTS HARDWARE BEHAVIOUR 
+
+
+TO USE THE HARDWARE PORTS 
+
+void ledonoff(unsigned char*o)
+{*o=0b11110000
+}
+port and function interfaces 
+void ledonoff(unsigned char*o)
+{
+#pragmaHLS INTERFACE AP_NONE  PORT=o                                 ##AS WE DON'T HAVE ANY SPECIFIC INTERRFACE IN THIS EXAMPLE AP_NONE is used for this purpose 
+#pragmaHLS INTERFACEAP_CTRL_NONE PORT=return                                                                   ##there is also an interface assigned to this whole function 
+
+*o=0b11110000
+}
