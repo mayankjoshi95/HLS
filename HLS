@@ -76,3 +76,30 @@ THE MAIN CONSTRAINTS DETERMINE THE PIN LOCATION AND PIN ELECTRICAL STANDARD
 
 SIMPLE INPUT 
 ##BASIC INPUT OUTPUT 
+
+
+#define data_type  unsigned char 
+
+void  basic_input_output(
+data_type input
+data_type *output){*output=input;}
+
+WHen the top level function is synthesized, the arguments (parameter)to the function are synthesized into RTL ports.This process is called interface synthesis.
+
+
+port  interface can have various modes
+
+a top funccitoppn in HLS cannot return a pointer value 
+
+#define data_type  unsigned char
+
+void PORT(
+data_type input,
+data_type *output)
+{
+#pragma HLS INTERFACE ap_none port=output
+#pragma HLS INTERFACE ap_none port=input
+#pragma HLS INTERFACE ap_ctrl_none port=return ##ports are assinged as simple wire .
+
+	*output=input;
+}
