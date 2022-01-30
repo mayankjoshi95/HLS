@@ -181,10 +181,149 @@ TEST BENCH HAS  4 PARTS
 4.COMPARE THE OUTPUTS OF THE DESIGN AND THE GOLDEN MODEL.
 
 
+NATIVE C++ DATA TYPE 
+BOOL ,CHAR ,INT 
+MODIFIER SIGNED UNSIGNED LONG
+FLOAT ,DOUBLE DATA TYPE WHICH IS ALSO CALLED SINGLE PRECISION FLOAT IS OF 32 BIT AND DOUBLE DATA TYPE IS OF 64 BIT .
+vivdo HLS support float and double data type 
+for combionational we donot use memory cell so all are mapped in the wire 
+
+clock period constrained should be higher than the circuit propagatrion delay
+
+
+BIT PRECISION DECLARATION
+
+VIVADO PROVIDE AN ARBITRARY PRECISION DATA TYPE LIBRARY 
+THIS LIBRARY SUPPORTS BOTH ARBITRARY PRECISION DATA TYPES FOR BOTH SIMULATION ADN SYNTHESIS
+IT COMES IN TWO FLAVOUR 
+1. FOR C 
+2 .FOR C++
+
+INTEGER PRECISION DATA TYPE
+IN ORDER TO USE THIS LIBRARY WE HAVE TO USE HEADER FFILE 
+
+#include<ap_int.h>
+example 
+#include "ap_int.h"
+ap_int<5> a;# 5 bit signed integer value 
+ap_uint<11> b;8 bit unsigned integer value 
+
+ap int and ap uint template provides all the arithmetic,bitwise ,logical and relational operator 
+
+this LIBRARY SUPPORTS ARBITRARY BIT WIDTH 1 TO 1024 BITS ##we can overwrite this default by 
+
+#define AP_INT_MAX_W  8192
+#include "ap_int.h"
+ap_int<8192>wide_a;
+
+##WHAT ARE HTE RULES OF ASSIGNING VALUES TO THESE VARIABLE 
+
+VARIABLE ASSIGNMEBT IS POSSIBLE BECAUSE OF THE CLASS CONSTRUCTOR AND OVERLOADED ASSIGNMENT OPERATOR 
+
+ap_int<17>a=0x17e;
+ap_uint<57>b=0xef42ed12cf72abULL;#it can represent number upto 64 bits.
+To allow assignment of values wider than 64 bits constructors are provided
+
+CONSTRUCTOR GETS TWO ASSIGNMENT A STRING REPRESENTING A VALUES AND A RADIX.
+ap_[u]int<w> a=ap_[u]int<w>(string,radix);
+ap_[u]int<w> a (string,radix);
+
+ap_int<41> a1=04017;
+ap_int<41> a1=ap_int<41>("4017",8);
+ap_int<763> a1=ap_int<763>("4017401740174017",16);
+values can be printed in the test bench using "cout" 
+std::cout<<"b="<<std::oct<<b<<std::endl;
+
+
+ASSIGNMENT USING BIT PRECISION 
+
+=,+=,-=,*=,/=,%=,<<=,>>=,&=^=,|=.
+
+IF BIT WIDTH OF TWO VARIABLE ARE NOT THE SAME 
+
+ap_int<10>a;
+ap_uint<17>b;
+ap_int<8>c;
+
+3 Technique handle this situation 
+1.SIGN EXTENSION
+2.ZERO EXTENSION
+3.TRUNCATION
+
+ap_int<7> a=0x5a;#1011010
+ap_int<10>b;#1111011010
+ap_uint<7> a=0x5a;
+ap_int<10>f ;#0001011010
+f=a;
+
+TRUNCATION 
+
+IT CAN LEAD TO UNEXPECTED BEHAVIOUR.
+
+
+##bit precision in print 
+
+the memeber function called to_string converts the valueof an arbitrary precision integer data types into the corresponding C++ string .
 
 
 
+##BIT LEVEL OPERATION AVAILABLE IN VIVADO HLS 
+1.length () memeber fucntion return the widht of an arbitrary precision data types 
+ap_int<41>a=0x23462af;
+int len=a.length();
+len=41;
+#THIS FUCNITON IS SYNTHESIZABLE AND CAN BE USED IN DESIGN AND TEST BENCH FILE 
+
+##CONCATENATION :the concat member function combines two variable \
+ap_int<5> b=0x3;
+ap_int<7> c=0x13;
+ap_int<12> r1=b.concat(c);
+ap_int<12> r1=(b,c);
+##OVERLOADED OPERATOR 
+
+LSB POSIITON IS 0 AND THE MSB IS 6 FOR A 7 BIT
+ap_int<7> c=0x2f;
+int i=4;
+ap_uint<1> one_bit=n[i];
+n[i]=1;
+
+using the range memeber function
+
+ap_uint<4>r;
+ap_uint<9>p=0xef;
+r=p.range(3,0);
 
 
+BITWISE LOGICAL OPERATOR 
+THEY ARE TRATED AS UNSIGNED ONLY IF BOTH OPERAND ARE OF THE SIGNED TYPE 
+BITWISE OR |
+BITWISE AND &
+BITWISE XOR ^
+BITWISE INVERSE ~
+
+ap_int<7> a=0x2f;
+ap_int<7> b=0x31;
+
+
+REDUCE LOGICAL FUNCTION 
+
+IT APLIES AN OPERATOR TO ALL BITS 
+AND reduce....... and_reduce()
+OR reduce....... or_reduce()
+NAND reduce....... nand_reduce()
+XOR reduce....... xor_reduce()
+NOR reduce....... nor_reduce()
+XNOR reduce....... xnor_reduce()
+
+for example 
+ap_int<7>a=0x2f;
+reduced xor =1
+
+
+#BIT REVERSE 
+
+reverse()
+ap_int<7>a=0X2f;;
+a.reverse();
 
 
