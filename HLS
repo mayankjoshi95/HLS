@@ -327,3 +327,33 @@ ap_int<7>a=0X2f;;
 a.reverse();
 
 
+ap_int<7>a=0X2f;;
+##TEST /SET/CLEAR.
+test(i)  bol t=a.test(5)
+returns TRUE if yes and FALSE if no.
+set(i,v)  a.set(5,0);
+bool t=a.test(5);
+sets the denoted bit 5 to 0
+
+set(i) sets the denoted bit specified by i to 1
+
+clear(i) sets the denoted bit by 0;
+
+
+##SHIFT OPERATOR 
+
+OVERLOADED SHIFT OPERATOR AVAILABLE FOR HLS ARBITRARY PRECISION DATA TYPES 
+
+THERE ARE TWO BITWISE SHIFT OPERATOR RIGHT SHIFT (>>) AND LEFT SHIFT <<
+
+ap_int<7>a=0X2f;
+
+ap_int<7>b=a>>3;
+
+
+ap_int<7>a=0X2f;
+
+ap_int<7>b=a<<3;
+a<<-3 means a>>3
+b.rrotate(3);
+b.lrotate(3);
