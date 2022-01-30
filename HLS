@@ -111,8 +111,11 @@ one of opur main goal in hls is to reduce this delay and decreasing this design 
 serially connected hardware increases the corresponding propagation delay .
 As we are using wires to carry logic values we use ap_none or ap_ctrl_none as interface .
 Now three parts are usefull for us now i.e timing utilisation and interface .
+In timing part is the estimation of the design propagation delay 
 
-
+HLS REPORT OF COMBINATIONAL CIIRCUIT SYNTHESIZED BY VIVADO HLS 
+1.SHOULD NOT UTILISE ANY MEMORY ELEMENT 
+2.SHOULD NOT HAVE ANY CLOCK PORT IN THE INTERFACE PART 
 
 
 
