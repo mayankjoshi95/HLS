@@ -103,3 +103,17 @@ data_type *output)
 
 	*output=input;
 }
+
+gate propagation delay 
+we assume here tp as the gate propagation delay
+it takes time for the output to reflect input state changes 
+one of opur main goal in hls is to reduce this delay and decreasing this design response time .
+serially connected hardware increases the corresponding propagation delay .
+As we are using wires to carry logic values we use ap_none or ap_ctrl_none as interface .
+Now three parts are usefull for us now i.e timing utilisation and interface .
+
+
+
+
+
+
