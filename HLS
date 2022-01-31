@@ -454,5 +454,18 @@ DESCRIBE PARITY BIT GENERATOR IN HLS
 
 an unrolled for-loop representing the parity bit genrator can be synthesized combinational circuit.
 
+HLS can synthesize basic arithmetic operator into the combioantional circuit without any extra work for designer 
+
+Basic arithmetic operator 
++,-/,*,%
+
+
+there are two types of arithmetic operator in vivado HLS combiantional and pipelined
+
+the pipelined implementation  uses a set of memeory cells called flip flop
+
+
+##if clock period is greater than  desgin propagation delay then iti ssynthesized into the combinational circuit 
+##if clock peirod is less than design  propagation delasy then it is synthesized into the sequebntial ciruuit 
 
 
