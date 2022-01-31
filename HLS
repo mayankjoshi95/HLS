@@ -357,3 +357,102 @@ ap_int<7>b=a<<3;
 a<<-3 means a>>3
 b.rrotate(3);
 b.lrotate(3);
+
+
+To drive a set of 7 segment two group of signal are required 
+1 DATA signal 
+2.CONTROL signal 
+
+Common anode 0 = ON and 1= OFF
+Common cathode 0=OFF and 1=ON
+
+TAKEAWAY 
+
+design steps 
+
+1. get the digits 
+2.encode the digit 
+3.drive the 7 segment with the code 
+
+BCD code types 
+
+1.PACKED:- IT NEEDS ONE BYTES 
+2.UNPACKED :-IT NEEDS TWO BYTES 
+
+
+DESIGNING A CIRCUIT TO CONVERT ITS BINARY TO BCD FORMAT IS OUR NEXT TOPIC
+
+
+Combinational loop
+
+for(int i=0;i<3;i++)
+task1;
+task2;
+}
+
+
+Scenario 1
+each task is dependent on the previous task sequential is expected 
+Scenario2
+all task1 can be executed in parallel 
+all tassk2 can be executed in parallel
+
+Scenario 3
+all task are independent as they work on different data 
+
+FOR EX:
+an N bit binary adder is a combinational hardware circuit with a repetitive computational pattern
+
+it uses N full adder in order to add 2 N bit binary number 
+
+
+N bit is a one counter which gives binary representation of number of ones in a binary representation of a given number .
+
+
+for loop condition to describe repetitive combinational pattern in HLS 
+
+
+FOR UNROLLING CONCEPT 
+
+ONLY LOOPS WITH STATIC BOUND WHICHARE FIXED AND KNOWN AT COMPILE TIME CAN BE UNRROLLED BY THE HLS TOOL
+
+#define N 100
+for(int i=0;i<N;i++)
+{
+#pragma HLS UNROLL
+task();
+}
+To unroll a loop completely
+to loop bounds must be known at the compile time .
+there should be enough resources on FPGA e.g enough LUT
+
+Parity Bit Definiton
+Parity Bit is a technique to detect single bit error in a binary data 
+Parity is a simple mechaniosm to detect single bit error in a binary data 
+a parity generator receive the data and generate the parity 
+Laater the parity bit checker check the parity of the data and parioty and tell if there are any error.
+
+There are two types of Parity odd parity:i.e the total number of ones in abinary value is odd and even parity 
+
+Parity for W bit data
+
+p =d[0] xor d[1] xor d[2] xor d[3] xor d[4] xor d[W-1]
+pe=p
+po=not(p)
+Totl propagation delay is =(W-1)*delta 
+
+How to reduce circuit propagation delay 
+
+The chain of XOR gates can implement the parity bit generator 
+
+How CAN WE REDUCE PROPAGATION DELAY 
+TO MAKE THE CODSSE IN THEOFMR OF A BALANCED TREE
+THEREFORE THIS BALANCED TREE IMPLEMENT THE FORM OF THE GENREATOR
+
+
+DESCRIBE PARITY BIT GENERATOR IN HLS
+
+an unrolled for-loop representing the parity bit genrator can be synthesized combinational circuit.
+
+
+
