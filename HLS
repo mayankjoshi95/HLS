@@ -548,15 +548,51 @@ THE TIMING WINDOW BEFORE THE EDGE IS CALLED THE SETUP TIME AND THE ONE AFER THE 
 DURING THIS TIME THE D FLIP FLOP SAMPLE THE DATA AND SAVES INTO ITS STATE.
 DURATION DEPEND ON THE UNDERLYING TECHNOLOGY IMPLEMENTING THE FLIP FLOPS  THUS THEY ARE FIXED AND CANNOT BE CHANGED OR CONTROLED.
 THUS THE COMBINATIONAL CIRCUIT SHOULD PROVIDE THE DATA BEFORE THIS WINDOW AND KEEP THE DATA UNCHANGED DURING THE FLIP FLOP SAMPLING PERIOD .
-THERE IS A MARGIN BETWEEN combiantional circuit propagation delay and setup time 
-the clock period conssit of two main part the combination logic propagation delay adn uncertainity 
+THERE IS A MARGIN BETWEEN combiantional circuit propagation delay and setup time .designer con sider some margin in the clock timing.
+the clock period conssit of two main part the combination logic propagation delay and uncertainity .Clock uncertainity is used for High level synthesis.
+Uncertainity value provides a controllable margin. to account fopr any increses inner delays due to RTL logic synthesis.
+
+
+the default value of clock uncertainity in vitis HLS is 27% of the clock period.
 
 
 
+##STATE
+ it encpasulate past input and output upto a specific time before going to next state .Thus transition can describe behaviour of sequential circuit
+ 
+ 
+ ###IN general case a sequential circuit with n memeory cells can have p states where p= 2^n
+ reset signal has the resposibilitites to put circuit into a known state.
 
 
+ACTIVE HIGH :- THE RESET HIGH CLEARS THE TARGET .
+ACTIVE LOW:- THE RESET LOW CLEARS THE TARGET .
 
 
+if it reset changes without depending on the clock asynchronous reset
+if it wait for following edge to change it is the synchronous rest
 
+SHIFT REGISTER :- ON EACH CLOCK EDGE THE DATA IS SHIFTED ONE BIT TO THE RIGHT .
+##PARALLEL LOAD SHIFT REGISTER 
 
+if combinational propagation delay is less than the time period 
+In each clock cycle the combinational circuit reads the current circuit from the memory cells ,generates the output and the next state ,save the next state.
+Sequential cicuit design idea :-
+
+void func(arguments){
+define registers;#We use static variables defintion in C/C++ to declare registers(to keep the circuit states) in HLS 
+read the registers values
+ perform tasks
+ modify register values}
+ 
+ 
+ ONE CLOCK CYCLE DESIGN
+ 
+ PARALLEL TO SERIAL CONVERSION 
+ 
+ we put a parrralel input in the serial and here we have the d , start ,end and begin.
+ 
+SERIAL TO PARALLEL CONVERTER:-
+VARIABLES ARE 
+D,START,END ,A.
 
