@@ -469,3 +469,7 @@ the pipelined implementation  uses a set of memeory cells called flip flop
 ##if clock peirod is less than design  propagation delasy then it is synthesized into the sequebntial ciruuit 
 
 
+HLS tool can automatically synthesize arithmetic operations on the native C data types
+Combinational circuits can implement an arthimetic expression
+the arthimetic operation can be implemented by LUT or DSP.
+
