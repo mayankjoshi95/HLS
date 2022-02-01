@@ -473,3 +473,34 @@ HLS tool can automatically synthesize arithmetic operations on the native C data
 Combinational circuits can implement an arthimetic expression
 the arthimetic operation can be implemented by LUT or DSP.
 
+
+
+OPERATOR OVERLOADING 
+WIRTING
+There is clock constraints to each HLS design.
+
+DESIGN YIMING CONSTRAINTS
+IF THE TOTAL PROPAGATION DELAY IS LESS THAN A CLOCK PERIOD AND THE DESIGN DOESNOT USE ANY MEMORY CELL THE HLS TOOLDROP THE CLOCK SIGNAL DURING SYNTHESIS AND GENRATE A FULLY COMBIANTIONAL CIRCUIT
+IF THE CLOCK PERIOD IS LESS THAN THE PROPAGATION DELAY THE HIGH LEVEL SYNTHESIS TOOL AUTOMATICALLY SCHEDUELS THE 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
