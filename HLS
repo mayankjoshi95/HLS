@@ -683,3 +683,189 @@ case s2:
 state=next_state;
 door_open=door_open_local;
 	
+
+
+TIMER 
+
+TO DO THE TASK AFTER A PREDEFINED AMOUNT OF TIME ON SEVERAL OCAASION
+IT HAS START ,n,clock,end .
+T=10ns,
+n=1000000
+then the timing interval is nT.
+timing interval is 10 ms.
+
+#include "timer.h"
+
+
+
+
+typedef enum{idle, running} timer_state_type;
+void timer(ap_uint<N> n, bool start, bool &end) {
+	#pragma HLS INTERFACE ap_none port=start
+	#pragma HLS INTERFACE ap_none port=end
+	#pragma HLS INTERFACE ap_none port=n
+	#pragma HLS INTERFACE ap_ctrl_none port=return
+
+	static timer_state_type state = idle;
+	static unsigned long long int timer_variable = 0;
+
+
+	timer_state_type       next_state;
+	unsigned long long int next_timer_variable;
+
+	bool end_local;
+
+	switch(state) {
+	case idle:
+		if (start == 1) {
+			next_state     = running;
+			end_local = 0;
+			next_timer_variable = 0;
+		} else {
+			next_state     = idle;
+			end_local = 0;
+			next_timer_variable = 0;
+		}
+
+		break;
+	case running:
+
+		if (timer_variable == n-1) {
+			next_state          = idle;
+			end_local           = 1;
+			next_timer_variable = 0;
+		} else {
+			next_timer_variable = timer_variable + 1;
+			next_state          = running;
+			end_local           = 0;
+		}
+		break;
+	default:
+		break;
+	}
+
+	state          = next_state;
+	timer_variable = next_timer_variable;
+	end            = end_local;
+
+
+}
+
+
+
+COUNTER 
+inputs can be 
+1.Reset 
+2.Enable
+3.Direction
+4.Data.
+5.Load
+
+
+Clock divider
+ffast=fslow/N
+
+#include "clock_generator.h"
+
+#define CLOCK_FREQUENCY_DIVISOR  20
+
+typedef enum{zero, one} clock_state_type;
+
+void clock_generator(bool &slow_clock_signal) {
+#pragma HLS INTERFACE ap_none port=slow_clock_signal
+#pragma HLS INTERFACE ap_ctrl_none port=return
+
+
+
+	static clock_state_type state = zero;
+	static unsigned int     counter = CLOCK_FREQUENCY_DIVISOR /2-1;
+
+	clock_state_type next_state;
+	unsigned int     next_counter;
+
+	bool slow_clock_signal_local;
+
+	switch(state) {
+	case zero:
+		if (counter == 0) {
+			next_counter       = CLOCK_FREQUENCY_DIVISOR /2-1;
+			next_state         = one;
+		} else {
+			next_counter       = counter-1;
+			next_state         = zero;
+		}
+		slow_clock_signal_local = 0;
+		break;
+	case one:
+		if (counter == 0) {
+			next_counter       = CLOCK_FREQUENCY_DIVISOR /2-1;
+			next_state         = zero;
+		} else {
+			next_counter       = counter-1;
+			next_state         = one;
+		}
+		slow_clock_signal_local = 1;
+		break;
+	default:
+		break;
+	}
+
+	state = next_state;
+	counter = next_counter;
+	slow_clock_signal = slow_clock_signal_local;
+
+}
+
+
+
+##PULSE GENERATOR 
+
+
+HERE CONSIDER A CLOCK AND THE DATA THEN THE OUPTUT IS THE SINGLE CYCLE NARROW PULSE 
+THE PROPSED PULSE GENERATOR HAS TWO STATES WAIT FOR ONE HERE THE SIGNAL IS ONE  AND WAIT FOR ZERO HERE THE SIGNAL IS ZERO  .
+
+
+
+
+
+
+
+##SINGLE CYCLE REGULAR PULSES
+
+
+IT TAKES A CLOCK SIGNAL TC AND GENRATE A CLOCK CYCLE WITH A SIGNAL CONTAINING ONLY ONE PULSE 
+
+n denotes the number of clcok cycles that ifts in the period of the output clock signal 
+n=Tp/tc
+output signal 
+
+EDGE DETECTOR 
+
+
+HEWRE THE INPUT IS THE INPUT SIGNAL AND THE CLOCK SIGNAL A SINGLE CYCLE PULSE IS ASSIGNED TO EACH OUTPUT I.E THE RISING AND THE FALLING EDGE WHEN THE INPTU GOES HIGH OR LOW
+
+
+
+INTEGRATED LOGIC ANALYSER 
+
+TO DEBUG A DESIGN.SINCE PHYSICAL LOGIC ANALYSER MAY NOT BE AVAILABLE TO COPE WITH THIS SITUATION WE USE THE ILA . 
+
+SIGNAL IN AN FPGA DESIGN CAN BE CONNECTED TO AN ILA THESE INPUT ATACHED TO A PROBE INPUT ARE SAMPLED AT THE DESIGN SPEED AND STORED USING ONCHIP BLOCK RAM USING BRAM .
+ THE CORE PARAMETERE SPECIFIES THE NUMBER OF PROBE ,TRACE SAMPLE,WIDHT OF EACH PROBE INPUT .
+ COMMUNICATION WIHT ILA IS DONE WITH AN AUTOINSTANTIATED DEBUG CORE HUB THAT CONNECT TO THE JTAG INTEFACE OF THE FPGA.
+ ILA NEED CLOCK TO SYNCHRONIZE ITS DESIGN FUNCTIONALITY AND DATA SMAPLIJNG WITH THE DESGIN UNDER TEST .
+ A SET OF CUSTOMIZABLE PORTS COMES UNDER DESIGN UNDER INSPECTION 
+ ILA CAN PROVIDE UPTO 1024 PROBES AND EACH PROBES HAVE UPTO 4096 BITS 
+ EACH PROBE CAN BE CUSTOMIZED A STHE DATA TRIGGER AND THE PORT 
+ 
+ IT HAS
+ 1. SAMPLING CIRCUIT:-SAMPLES THE DATA IN THE PROBE 
+ 2.BRAM :STORES THE SAMPLES IN THE BRAM (SIZE OF BRAM IS DEFINED BY SAMPLE DATA DEPTH IT DEPEND ON MAXIMUM NUMBER OF SAMPLES THAT CAN BE STORED AT RUN TIME ON EACH PROBE.
+ 
+ ####NUMBER OF SAMPLES DEPEND ON THE BRAM SIZE .
+ 
+ ####MANY PROBE ARE CONNECTED TO TRRIGER THROUGH ALOGIC GATE AND THE TRIGGER IS PUT ONTO THE SAMPLER  
+
+
+
+
