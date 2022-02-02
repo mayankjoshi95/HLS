@@ -596,3 +596,30 @@ SERIAL TO PARALLEL CONVERTER:-
 VARIABLES ARE 
 D,START,END ,A.
 
+
+
+
+
+A C based test bench should be provided fir the design funcitonality and timing validation
+A C based test bench can genrate different input waveform as the test vectors for the design under test.
+
+Simulation is one of the verification technique to check the validity of the design is done in two ways 
+1 Pre synthesis validation.
+2 post synthesis validation.
+
+role of testt bench is to genrate the inputs and get the outputs  and compare it to tte golden model to check if the output is right.
+
+C++ main function should be used as the testbench top function.
+
+int main(){
+Define Variables
+genrate input test vector
+call design top function
+get the result from golden model 
+compare results
+return status.
+}
+
+
+
+
