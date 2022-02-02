@@ -647,4 +647,39 @@ FSM ELEMENTS
 ##THERE IS NO CONDITION FOR THE TRANSITION BETWEEN THE TWO STATE WITH THE RISING EDGE OF THE CLOCK YOU WILL ALWAYS GO FROM ONE STATE TO THE OTHER 
 
 
+|##HLS CODE TEMPLATE TO RREPRESNT AN FSM 
 
+TEMPLATE FOR THE FSM 
+enymerate types to define the lists of the states
+void functiion_name(argument){
+
+1.states by defining the static varibles 
+2.next sate variables definition#idea is that we are not going to change the regicsters values sseveral time sso wwe willl only change the next states throughout the funciton 
+and assign the value of the registers at the end
+3. then we assign a variaable corressponding to each output argument
+4 then we have the switch case that define all the FSM transtion .
+5. at the end of the function we modify the state register an dassign the output to the output argument }
+
+}
+typedef enum{S0,S2,S23,S234,S2346} state_type;
+void sequence_finder(ap_uint<4> x,bool &door_open){
+#pragma HLS INTERFACE ap_ctrl_none port=return
+	static state_type state=s0;
+	state_type next_state;##it avoid changing the value of the registers
+	bool door_open_local=0;
+	
+	
+	switch(state){
+case s0:
+	if (x==2)
+	{next_state=s2;}
+	else{next_state=s0;}
+door_open_local=0;
+break;
+case s2:
+	break;
+	default :
+	break;
+state=next_state;
+door_open=door_open_local;
+	
