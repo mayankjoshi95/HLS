@@ -619,6 +619,19 @@ get the result from golden model
 compare results
 return status.
 }
+Test bench must not require interactive user inputs during execution.
+
+
+TO CREATE AN INPUT WAVEFORM TO TEST ITS FUNCITONALITY AND TIME 
+
+STATE MACHINE 
+
+FSM is used to model a wide range of sequential cirucit .therefore describing an FSM in HLS is essential 
+
+FSM is amodelling technique representing a sequence of event in an algorithm .
+If an application consit of list of well defined task which determine all the possibnle states transition and design outputs in terms of all the input combination then FSM is used 
+
+
 
 
 
