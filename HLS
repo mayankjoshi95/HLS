@@ -632,7 +632,19 @@ FSM is amodelling technique representing a sequence of event in an algorithm .
 If an application consit of list of well defined task which determine all the possibnle states transition and design outputs in terms of all the input combination then FSM is used 
 
 
+A finite state machine can model an application with the list of well defined tasks 
+a state transition diagram can represent an FSM which later will turned tro the equivalent HLS code .
+FSM CONCEPTS 
+STATES 
+TRASITION
 
+
+FSM ELEMENTS 
+1.REGISTERS:TO KEEOPP THE STATES 
+2.CONDIITONS :DEFIENS ALL THE TRANSITION
+3.CONDIIITONAL STATEMNETS:SWTICH CASE 
+
+##THERE IS NO CONDITION FOR THE TRANSITION BETWEEN THE TWO STATE WITH THE RISING EDGE OF THE CLOCK YOU WILL ALWAYS GO FROM ONE STATE TO THE OTHER 
 
 
 
