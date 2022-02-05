@@ -876,3 +876,109 @@ ILA DEBUG FLOW
 
 
 SINGLE CYCLE DESIGN APPROACH IS NOT ALWAYS APPLICABLE TO DESIGNING LOGIC CIRCUIT
+
+
+
+function PIPELINING
+
+There are sequential tasks in which one task depend on the other and only after one is completed other gets started 
+THUS THEY CANNOT PERFORM IN THE FULL PARRALLEL FASHION
+
+ON WAY TO EXECUTE THESE TASKS IS THE SEQUENTIAL EXECUTION WHERE ONE DATA WILL FIRST COMPLETE THE TASK AND THEN GO TO THE OTHER 
+another execution is pipelining in which tasks execution can overlap 
+
+here task 1 recevie the first data and after task 1 goes to task 2 then task 1 willl process the second data.
+while task 3 process the first data task 2 process the second data .
+
+
+PIPELINING IS APPLIED TO FUUCNTIONS AND LOOPS 
+
+FOR COMBINATIONAL CIRCUIT TO BE EXECUTED IN TWO CLOCK CYCLE IT IS DIVIDED INTO TWO PARTS AND EACH PART IS RUN IN THE ONE CYCLE .
+IN THIS CASE THE INTIIALTION INTERVAL IS ONE.
+
+
+FUNCITON PIPELINING IN HLS 
+
+
+##pragma HLS PIPELINE is used for pipelining 
+
+
+Performance Metric 
+
+1:Intiaiton interval:-the speed that the cicuit can represent new inputs  ,
+2:latency:-timing between an input and its corresponding output 
+3:Throughput:- Thespeed of genrating output data
+
+Single clock cycle Initiation interval (SCII):-the circuit can accepts input adn genrate data ineach clock cycle 
+
+
+
+PMOD 
+
+PERIPHERAL MODULE INTERFACE 
+IT IS USED TO CONNECT LOW FREQUENCY 
+LOW I/O PINS COUNT PERIOPHERAL MODULE
+IT COMMUNICATE WITH THE BOARD USING 6 12 OR 8 PIN CONNECTORS THAT CAN CARRY MULTIPLE DIGITAL CONTROL SIGNAL INCLUDING SPI AND OTHER SERIAL PROTOCOL
+
+SCII design flow pros and cons 
+
+SCII design approach provides efficiretn implementation int he sequential cirucit such that they can accept inputs in every clock cycle .
+Provides the maximum throughput available through an application 
+SCII benefits 
+
+1. Performance :high performance as there is no wastage of the clock cycle 
+2.Simplicity of the communcaiton between two hardare module:If M1 genratee data in every clock cycle than M2 genrate data in the following clock cycle
+Thus there is no need to have any synchronization mechanism between them 
+
+
+SCII drawback 
+
+1. uncsyncronized communciation 
+2.high clock period
+
+
+HANDSHAKKING MECHANISM AVAILABLE IN HLS AND HOW CAN WE USE THEM 
+
+HARDWARE MODULE COMMUNCAITON 
+HARDWARE MODULE USED PORTS TO COMMUNICATE TOGEHTER .
+THE NUMBER OF SIGNAL AND THERE CHARACTERSITICS ARE DEFINED AST HE PORTS INTERFACE 
+THE ASSOCIATED PROTOOCOL DEFINE the mechanism of data transaction on the corresponding port
+protocol defines the event sequences of the synchronizationmechanism between two connected ports.
+
+PORT INTERFACE AND PROTOCOL CONCEPT ARE VERY CLOSELY RELATED .
+
+
+HLS AND HARDWARE MODULE 
+TOP FUINCITON OF AN HLS MODULE IS SYNTHESIZED INTO AN HARDAWARE MODULE.
+ALSO ITS RETURN VALUE IS ASSINGED TO OPUTPUT AND CALL BY REFERENCE IS ASSIGNED TO INPUT AND OUTPUT AND CALL BY VALUE OIS ASSIGNED TO INPUT
+CALL BY VALUE ARGUMENT ARE ASSIGNED TO INPUT AND 
+
+ARRAY AND POINTERS NEED ACCESIGN TO MEEMORIES SO THEY NEED SPECIAL ATTENTION
+
+COMMUNCATION BETWEEN MODULES DONOT REQUIRE ANY SYNCHRONIZATION BUT WHEN THE MODULE COMMUNICATE WITH THE PERPHERALS IT REQUIRE THE SYNCHRONIZATION.
+
+
+COMMUNICATION AMONG MODULES INSIDE THE FPGA AND COMMUNCATION AMONG MODULES OUTSIDE THE FPGA .
+
+WHAT IS THE BASIC IDEA OF COMUINICATION BETWEEN THE TWO HARDWARE MODLES 
+
+
+
+TWO MODULES CAN PROPERLY COMMUNICATE IF THEY ARE READY FOR DATA EXCHANGE  AND ARE AWARE OF THESE TIMING .
+IT IS USUALY CALLED SYNCHRONIZATION
+
+INTERFACE SYNTHESIS
+
+VITIS HLS CREATES THREE TYPES OF PORTS:
+1.CLOCK AND REST PORTS 
+2. BLOCK LEVEL PORTS 
+3.ARGUMENT LEVEL PORTS
+
+IF THE DESIGN TAKE SMORE THAN ONE CYCLE TO COMPLETE ITS OPERATION OR HAS A MEMEORY CELL THAN THE SYNTHESSIS TOOL ADDS CLOCK AND REST TO THE RTL 
+
+RESET IS USED TO RESTORE THE VALUE IN FPGA OR BLOCK RAM TO THE INTIAL VALUE 
+if avariable is static or global the reset pragma is used to explicity add a reset or the variable can be removed from the reset by turning of the pragma .
+#pragma HLS reset variable=<a> off
+
+
+
