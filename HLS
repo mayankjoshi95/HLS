@@ -1061,3 +1061,6 @@ SWITCH DEBOUNCING I.E AFTER SWITCH GETS ON THERE ARE MANY TRANSITION SO TO DEAL 
 WE AGAIN SAMPLE TO GET THE PULSE WITH clEAR edge.
 
 
+
+If the sampling pulse delay is greater than the bouncing period then the circuit can genrate the desired output .
+
