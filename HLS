@@ -1169,6 +1169,8 @@ else
 	return force;
 }
 
+latency is the number of cycle between the input and the output ,or time to execute .
+Interval :Number of cycles that you can add another input  i.e number of cycles that you need to wait to give a new input.
 
 
-
+##AFTER CONVERTING TO IP CORE WE GET THE GRAVITY WITH THE ADDRESS AND EVERY INPUT OUTPUT IS STORED IN THE ADDRESS FROM SOFTWARE POINT OF VIEW 
