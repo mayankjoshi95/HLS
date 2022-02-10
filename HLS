@@ -34,6 +34,8 @@ In vivado HLS we
 
 TOP FUNCTION :IS THE NAME OF THE HARDWARE MODULE ENTRY FUNCTION .EACH HARDWARE MOPDULE HAVE ON TOP FUNCITON
 
+##
+
 
 VIVADO HLS GUI HAS 4 PARTS 
 
@@ -1081,13 +1083,62 @@ else out_vec[idx]=0;
 
 
 
+void find(char val,char in_vec[10],char out_vec[10])
+#pragma HLS INTERFACE AP_MEMORY PORT=in_vec
+#pragma HLS INTEFACE AP_FIFO  PORT =out_vec
+other interface like AXIS(AXI4_STREAM)
+S_AXILITE(AXI4_LITE)
+M_AXI(AXI4_FULL MASTER)
+BRAM(BLOCK RAM )TO CONNECT YOUR CODE TO THE BLOCK RAM INSIDE YOUR FPGA 
+
+
+void find(char val,char in_vec[10],char out_vec[10])
+
+{
+#pragma HLS INTERFACE ap_fifo port=out_vec ##It means that your code is going to have interface with the FIFO it foesnot mean that your code has the FIFO . 
+#pragma HLS INTERFACE ap_fifo port=in_vec
+for (int idx=0;idx<10;idx++)
+{if (in_vec[idx]==val)
+{out_vec[idx]=1;
+}
+else
+	out_vec[idx]=0;
+}
+}
+
+
+##HLS MATH LIBRARY 
+
+USE HLS_MATH.H
+hls::sinf(float_var);
+FLOAT DATA TYPE WILL USE THE LESS HARDWARE 
+
+
+WE CAN ALSO USE FIXED POINT DATA TYPE 
+FOR FIXED POINT ,USE VARIABLES
+AP_FIXED<BITS>  THIS LIBRARY IS USED #AP_FIXED.H
 
 
 
 
 
+#include "hls_math.h"
+#include <math.h>
+#include <ap_fixed.h>
+typedef ap_fixed<16,5> fix_t;
+double dist_point_double(double Ax,double Ay,double Bx,double By)
+{return hls::sqrt(pow(Ax-Bx,2)+pow(Ay-By,2));
 
+}
+float dist_point_float(float Ax,float Ay,float Bx,float By)
+{return hls::sqrtf(pow(Ax-Bx,2)+pow(Ay-By,2));  #using float we have to use sqrt'f' extra .
 
+}
+
+fix_t dist_point_fix(fix_t Ax,fix_t Ay,fix_t Bx,fix_t By)
+{return hls::sqrt((Ax-Bx)*(Ax-Bx)+(Ay-By)*(Ay-By));
+
+}
 
 
 
