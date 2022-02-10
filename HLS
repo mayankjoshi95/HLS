@@ -1144,6 +1144,31 @@ fix_t dist_point_fix(fix_t Ax,fix_t Ay,fix_t Bx,fix_t By)
 
 
 
+##AXI Lite slave floating point
+
+##AXI4 -Lite (SLAVE):GOOD FOR ip core that doesnot need a stream of data .here you send a small amoppunt of data and receive the samll amount amount of data. 
+##AXI4 -STREAM :accepts data stream 
+##AXI4-MASTER
+##BRAM :it will create memory interface to the block RAM inside FPGA . so if we have to push some data inside memory interface and we want the microcontroller ,microblaze 
+to accesss the data we can use the BRAM it is quite fast and reliable as well.
+##in the microblaze we need a master which uses the interconnect to connect to the slave.
+
+float gravity(float m1,float m2,float dist)
+{
+#pragma HLS INTERFACE s_axilite port=dist bundle=CRTLS##m1,m2 will all be part of the single axilite interface CRTLS.
+#pragma HLS INTERFACE s_axilite port=m2 bundle=CRTLS
+#pragma HLS INTERFACE s_axilite port=m1 bundle=CRTLS
+#pragma HLS INTERFACE s_axilite port=return bundle =CRTLS
+	float force=0;
+	float distSquare=0;
+	if (dist==0)
+	{distSquare=.000001f;}
+else
+	distSquare=(dist*dist);
+	force=10.0f*(m1*m2)/distSquare;
+	return force;
+}
+
 
 
 
