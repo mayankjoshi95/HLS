@@ -1176,3 +1176,24 @@ Interval :Number of cycles that you can add another input  i.e number of cycles 
 ##AFTER CONVERTING TO IP CORE WE GET THE GRAVITY WITH THE ADDRESS AND EVERY INPUT OUTPUT IS STORED IN THE ADDRESS FROM SOFTWARE POINT OF VIEW 
 
 ##using AXI LITE SLAVE IS NOT HTE BEST OPTION TO SEND THE BURST OF DATA WE CAN USE THE AXI4 STREAM .
+
+
+
+##BRAM ARE BLOCK RAM are very very fast memory that you can have inside your FPGA  .How to genreate Ip core that read and write on those memories and how tomake those memories
+are available to the PS part of your ZYNQ
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
