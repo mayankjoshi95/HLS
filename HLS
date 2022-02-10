@@ -1194,3 +1194,27 @@ are available to the PS part of your ZYNQ
 ##THE INTERFACES THAT ARE USED TO COOMUNCATE WITH BLOCK RAM WILL BE AXI-4
 
 ##AXI TIMER : IT IS USED TO COUNT TIME.
+
+
+##VIVADO HLS AXI4 -STREAM
+How to connect AXI stream block with the microblaze or zynq
+we always should use the DMA .For an interconnect DMA push data directly to the DDR without using resources of the CPU .
+in DMA we have master memory mapped to stream MM2S to push data from DDR to AXI IP 
+and SS2MM is used to push result form the AXI ip core directly to be pushed to DDR.
+all this without using resources of the ZYNQ.
+here we use this to push some data in to push some data out
+
+hls::stream objectswill force you to read the port only one per clock which is a very good programming practice if you are dealing with hardware ,in that cse you want to read the value more 
+than once you need to cache it i.e save into the loccal variable.
+On axi stream you have
+1.TVALID,TREADY(Handshake that indicate the transnission started)
+2.TDATA(Actually our data )
+3.TLAST(it indicate that the transfer is finished)
+4.TUSR,TSTRB,TID,TDEST
+
+
+
+
+
+
+
