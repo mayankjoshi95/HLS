@@ -1125,7 +1125,7 @@ AP_FIXED<BITS>  THIS LIBRARY IS USED #AP_FIXED.H
 #include "hls_math.h"
 #include <math.h>
 #include <ap_fixed.h>
-typedef ap_fixed<16,5> fix_t;
+typedef ap_fixed<16,5> fix_t;##16 bits are there in which 5 bits are to the integer parts and rest 11 bits is for fractional parts.
 double dist_point_double(double Ax,double Ay,double Bx,double By)
 {return hls::sqrt(pow(Ax-Bx,2)+pow(Ay-By,2));
 
