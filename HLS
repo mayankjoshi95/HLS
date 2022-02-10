@@ -1140,7 +1140,7 @@ fix_t dist_point_fix(fix_t Ax,fix_t Ay,fix_t Bx,fix_t By)
 
 }
 
-
+##fixed version is recommended to use cuz it uses the less resources.
 
 
 
