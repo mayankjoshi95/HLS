@@ -1064,7 +1064,11 @@ WE AGAIN SAMPLE TO GET THE PULSE WITH clEAR edge.
 
 If the sampling pulse delay is greater than the bouncing period then the circuit can genrate the desired output .
 
-void find(char val,char in_vec[10],
+void find(char val,char in_vec[10],char out_vec[10])
+array on the top infer function infer RAM PORTS AND FIFO PORTS.
+IN_VEC_ADDRESS,IN_VEC_CE,IN_VEC_QO. OUT_VEC_ADDRSSS,OUT_VEC_CE,OUT_VEC_WE,OUT_VEC_DO.
+					 
+					 
 
 
 
