@@ -1247,8 +1247,21 @@ int main()
 }
  its .elf file is of large size 
  one reason is 
- ##1.STATIC LINKING IT IS DURING DYNAMIC LINKING THAT CODE FOR PRINTF IS LINKED TO OUR CODE AND THEN WE GET THE .EXE FILE OR .ELF FILE.
+ ##1.STATIC LINKING 
  
- ##2.DYNAMIC LINKING:WHEN MY PROGRAM IS RUNNING THEN ABOVE HAPPENS THEN MEMORY IS ALLOCATED .
+ ##2.DYNAMIC LINKING:
  DYNAMIC LINIING GREATLY REDUCES THE CODE SIZE 
  
+ 
+ #include<xil_printf.h>
+int main()
+{
+	print("Hello World");##it has les size than the normal printf wiht <stdio.h>
+}
+
+
+#include<stdio.h.h>
+int main()
+{
+	xil_printf(5);##has much larger size.##it can't print floating point number #t print anything except floating point number 
+}
